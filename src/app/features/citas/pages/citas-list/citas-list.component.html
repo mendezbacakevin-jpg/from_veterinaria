@@ -1,0 +1,136 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Lista de Citas 🐾</h2>
+
+  <!-- BOTÓN -->
+  <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalCita">
+    + Nueva Cita
+  </button>
+
+  <!-- TABLA -->
+  <table class="table table-striped table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Fecha</th>
+        <th>Mascota</th>
+        <th>Motivo</th>
+        <th>Servicio</th>
+        <th>Veterinario</th>
+        <th>Estado</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cita of citas">
+        <td>{{ cita.idCita }}</td>
+        <td>{{ cita.fecha }}</td>
+        <td>{{ cita.nombreMascota }}</td>
+        <td>{{ cita.motivo }}</td>
+        <td>{{ cita.nombreServicio }}</td>
+        <td>{{ cita.nombreVeterinario }}</td>
+        <th>{{ cita.estado}}</th>
+        <td>
+     <button class="btn btn-warning btn-sm" (click)="editarCita(cita)">Editar</button>
+     <button class="btn btn-danger btn-sm" (click)="eliminarCita(cita.idCita)">Eliminar</button>
+     </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- MODAL -->
+<div class="modal fade" id="modalCita" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Registrar Cita</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <form #formCita="ngForm" id="formCita">
+
+          <!-- FECHA -->
+          <div class="mb-3">
+            <label>Fecha</label>
+            <input type="date" class="form-control"
+                   [(ngModel)]="nuevaCita.fecha"
+                   name="fecha">
+          </div>
+
+          <!-- ❌ MASCOTA INPUT ELIMINADO (estaba mal usando idAnimal) -->
+
+          <!-- SERVICIO -->
+          <div class="mb-3">
+            <label>Servicio</label>
+            <select class="form-select"
+                    [(ngModel)]="nuevaCita.idServicio"
+                    name="servicio">
+
+              <option [ngValue]="0">Seleccione...</option> <!-- 👈 agregado -->
+
+              <option *ngFor="let s of servicios" [ngValue]="s.id">
+                {{ s.nombre }}
+              </option>
+            </select>
+          </div>
+
+          <!-- VETERINARIO -->
+          <div class="mb-3">
+            <label>Veterinario</label>
+            <select class="form-select"
+                    [(ngModel)]="nuevaCita.idVeterinario"
+                    name="veterinario">
+
+              <option [ngValue]="0">Seleccione...</option>
+
+              <option *ngFor="let v of veterinarios" [ngValue]="v.id">
+                {{ v.nombre }} - {{ v.especialidad }}
+              </option>
+            </select>
+          </div>
+
+          <!-- ANIMAL -->
+          <div class="mb-3">
+            <label>Animal</label>
+            <select class="form-select"
+                    [(ngModel)]="nuevaCita.idAnimal"
+                    name="animal">
+
+              <option [ngValue]="0">Seleccione...</option>
+
+              <!-- 👇 CORREGIDO: era a.id -->
+              <option *ngFor="let a of animales" [ngValue]="a.id">
+                {{ a.nombre }} - {{ a.especie }} ({{ a.raza }})
+              </option>
+            </select>
+          </div>
+
+          <!-- 👇 NUEVO: HORA -->
+          <div class="mb-3">
+            <label>Hora</label>
+            <input type="time" class="form-control"
+                   [(ngModel)]="nuevaCita.hora"
+                   name="hora">
+          </div>
+
+          <!-- 👇 NUEVO: MOTIVO -->
+          <div class="mb-3">
+            <label>Motivo</label>
+            <input type="text" class="form-control"
+                   [(ngModel)]="nuevaCita.motivo"
+                   name="motivo">
+          </div>
+
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-success" (click)="guardarCita()">Guardar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
