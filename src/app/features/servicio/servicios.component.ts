@@ -1,51 +1,48 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router, NavigationEnd, RouterModule } from '@angular/router';
+import { CitaService } from '../../core/services/cita.service';
+import { Servicio } from '../citas/model/servicio.model';
+import { filter, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-servicios',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './servicios.component.html',
-  
 })
-export class ServiciosComponent {
+export class ServiciosComponent implements OnInit, OnDestroy {
 
-  usuario: string | null = null; // simula login
+  servicios: Servicio[] = [];
+  private routerSub!: Subscription;
 
-  servicios = [
-    {
-      titulo: 'Consulta General',
-      descripcion: 'Evaluamos la salud de tu mascota con diagnóstico profesional.',
-      icono: 'fas fa-stethoscope'
-    },
-    {
-      titulo: 'Vacunación',
-      descripcion: 'Protegemos a tus mascotas con vacunas seguras.',
-      icono: 'fas fa-syringe'
-    },
-    {
-      titulo: 'Cirugía Veterinaria',
-      descripcion: 'Procedimientos seguros con tecnología avanzada.',
-      icono: 'fas fa-user-md'
-    },
-    {
-      titulo: 'Desparasitación',
-      descripcion: 'Eliminación de parásitos internos y externos.',
-      icono: 'fas fa-pills'
-    },
-    {
-      titulo: 'Diagnóstico por Imágenes',
-      descripcion: 'Rayos X y ecografías.',
-      icono: 'fas fa-x-ray'
-    },
-    {
-      titulo: 'Cuidado Dental',
-      descripcion: 'Limpieza y salud bucal.',
-      icono: 'fas fa-tooth'
-    }
-  ];
+  constructor(
+    private servicioService: CitaService,
+    private router: Router,
+    private cdr: ChangeDetectorRef  // 👈
+  ) {}
 
-  logout() {
-    this.usuario = null;
+  ngOnInit(): void {
+    this.cargarServicios();
+
+    this.routerSub = this.router.events.pipe(
+      filter(e => e instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.cargarServicios();
+    });
+  }
+
+  cargarServicios(): void {
+    this.servicioService.getServicios().subscribe({
+      next: (data) => {
+        this.servicios = data;
+        this.cdr.detectChanges(); // 👈 fuerza actualización de la vista
+      },
+      error: (err) => console.error('Error cargando servicios', err)
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.routerSub?.unsubscribe();
   }
 }

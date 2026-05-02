@@ -1,0 +1,63 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card shadow-lg p-4" style="width: 400px;">
+    
+    <div class="text-center mb-3">
+      <i class="fas fa-user-plus fa-2x"></i>
+      <h3 class="mt-2">Registrar Usuario</h3>
+    </div>
+
+    <form (ngSubmit)="registrar()">
+      <!-- Usuario -->
+      <div class="mb-3">
+        <label class="form-label">Usuario</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fas fa-user"></i></span>
+          <input type="text" class="form-control" [(ngModel)]="username" name="username" required>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+          <input type="email" class="form-control" [(ngModel)]="email" name="email" required>
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="mb-3">
+        <label class="form-label">Contraseña</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fas fa-lock"></i></span>
+          <input type="password" class="form-control" [(ngModel)]="password" name="password" required>
+        </div>
+      </div>
+
+      <!-- Confirmar Password -->
+      <div class="mb-3">
+        <label class="form-label">Confirmar Contraseña</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fas fa-lock"></i></span>
+          <input type="password" class="form-control" [(ngModel)]="confirmPassword" name="confirmPassword" required>
+        </div>
+      </div>
+
+      <!-- Botón -->
+      <button class="btn btn-success w-100">
+        <i class="fas fa-user-plus"></i> Registrarse
+      </button>
+    </form>
+
+    <!-- Link para volver al login -->
+    <div class="text-center mt-3">
+      <a (click)="irLogin()" class="text-primary">¿Ya tienes cuenta? Inicia sesión</a>
+    </div>
+
+    <!-- Mensaje -->
+    <div *ngIf="mensaje" class="alert alert-danger mt-3">
+      {{mensaje}}
+    </div>
+
+  </div>
+</div>
