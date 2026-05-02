@@ -1,7 +1,72 @@
-<nav style="background:#1976d2; padding:10px; color:white; display:flex; align-items:center; gap:15px;">
+<!-- <nav style="background:#1976d2; padding:10px; color:white; display:flex; align-items:center; gap:15px;">
   
     <span style="font-weight:bold;">🐾 Veterinaria</span>
     <a routerLink="/citas" routerLinkActive="active" style="color:white; text-decoration:none;">Citas</a>
     <a routerLink="/servicios" routerLinkActive="active" style="color:white; text-decoration:none;">Servicios</a>
 
+</nav> -->
+
+<nav class="navbar navbar-expand-lg" style="background-color: #f5f5dc;">
+  <div class="container-fluid">
+
+    <!-- IZQUIERDA -->
+    <div class="d-flex align-items-center">
+      <img src="/images/princi2.png" alt="Logo" style="height: 50px;" class="me-3">
+
+      <a class="nav-link px-3" routerLink="/principal">Inicio</a>
+      <a class="nav-link px-3" routerLink="/nosotros">Nosotros</a>
+
+      <!-- DROPDOWN -->
+      <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle px-3" data-bs-toggle="dropdown">
+          Productos
+        </a>
+
+        <ul class="dropdown-menu">
+
+          <!-- SUBMENU -->
+          <li class="dropdown-submenu position-relative">
+            <a class="dropdown-item dropdown-toggle">Alimentos</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" routerLink="/alimentos/perro">Perros</a></li>
+              <li><a class="dropdown-item" routerLink="/alimentos/gato">Gatos</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown-submenu position-relative">
+            <a class="dropdown-item dropdown-toggle">Juguetes</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" routerLink="/juguetes/perro">Perros</a></li>
+              <li><a class="dropdown-item" routerLink="/juguetes/gato">Gatos</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown-submenu position-relative">
+            <a class="dropdown-item dropdown-toggle">Accesorios</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" routerLink="/accesorios/perro">Perros</a></li>
+              <li><a class="dropdown-item" routerLink="/accesorios/gato">Gatos</a></li>
+            </ul>
+          </li>
+
+        </ul>
+      </div>
+
+      <a class="nav-link px-3" routerLink="/servicios">Servicios</a>
+      <a class="nav-link px-3" routerLink="/citas">Mis Citas</a>
+    </div>
+
+    <!-- DERECHA -->
+    <div class="d-flex align-items-center">
+      <a class="nav-link px-3" routerLink="/citas">Registro Cita</a>
+      <a class="nav-link px-3" routerLink="/equipo">Equipo</a>
+      <a class="nav-link px-3" routerLink="/contacto">Contacto</a>
+      
+
+      <a class="nav-link px-3">
+        <i class="fas fa-shopping-cart"></i>
+      </a>
+    </div>
+
+  </div>
 </nav>

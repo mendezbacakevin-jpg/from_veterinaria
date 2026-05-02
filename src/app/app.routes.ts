@@ -1,8 +1,20 @@
 import { Routes } from '@angular/router';
 import { CitasListComponent } from './features/citas/pages/citas-list/citas-list.component';
 import { ServiciosListComponent } from './features/servicios/pages/servicios-list/servicios-list.component';
+import { NosotrosComponent } from './features/nosotros/nosotros.component';
+import { ServiciosComponent } from './features/servicio/servicios.component';
+import { EquipoComponent } from './features/equipo/equipo.component';
+import { PrincipalComponent } from './features/principal/principal.component';
+import { ContactoComponent } from './features/contacto/contacto.component';
 
-export const routes: Routes = [ { path: '', redirectTo: 'citas', pathMatch: 'full' },
+export const routes: Routes = [ 
+  { path: '', redirectTo: 'citas', pathMatch: 'full' },
+  { path: 'principal', component: PrincipalComponent },
+  { path: 'nosotros', component: NosotrosComponent},
+  { path: 'servicios', component: ServiciosComponent},
   { path: 'citas', component: CitasListComponent },
-  { path: 'servicios', component: ServiciosListComponent }
+  { path: 'equipo', component: EquipoComponent },
+   { path: 'contacto', component: ContactoComponent },
+
+  { path: 'servicios-list', component: ServiciosListComponent }
 ];

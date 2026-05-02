@@ -46,7 +46,7 @@ export class CitasListComponent implements OnInit {
 
   cargarCitas() : void {
     this.citaService.getCitas().subscribe({
-      next: (data) => {this.citas = [...data]; console.log(data)},
+      next: (data) => {this.citas = [...data]; },
       error: (err) => console.error('Error cargando citas', err)
     });
   }

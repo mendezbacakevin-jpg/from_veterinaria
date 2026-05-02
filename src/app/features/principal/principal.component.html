@@ -1,0 +1,65 @@
+<!-- HERO -->
+<section class="container mb-5 py-4">
+  <div class="row align-items-center" style="min-height: 400px;">
+
+    <!-- TEXTO -->
+    <div class="col-md-6 text-start">
+      <h2 class="fw-bold display-4 mb-3">Conoce a Thor</h2>
+      <p class="fs-4 text-muted">
+        Thor es un Doberman ejemplar, símbolo de salud y vitalidad. En Clínica Veterinaria Vida Animal,
+        brindamos los mejores productos y cuidados especializados.
+      </p>
+      <a routerLink="/servicios" class="btn btn-primary btn-lg mt-3">
+        Descubre nuestros servicios
+      </a>
+    </div>
+
+    <!-- IMAGEN -->
+    <div class="col-md-6 d-flex justify-content-center">
+      <img src="/images/pagin1-removebg-preview.png"
+           alt="Perro Thor"
+           class="hero-img">
+    </div>
+
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="container mb-5 py-5">
+  <h2 class="text-center mb-5 fw-bold display-5">Nuestros Servicios</h2>
+
+  <div class="row g-4">
+
+    <div class="col-md-4 col-sm-6" *ngFor="let s of servicios">
+      <div class="card-servicio">
+        <img [src]="s.imagen" class="img-servicio">
+        <div class="overlay">
+          <h5>{{ s.nombre }}</h5>
+          <a [routerLink]="s.ruta" class="btn btn-outline-light btn-sm mt-2">
+            Leer más
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="container mb-5 py-5">
+  <h2 class="text-center mb-5 fw-bold">Lo que dicen nuestros clientes</h2>
+
+  <div class="row g-4">
+
+    <div class="col-lg-4 col-md-6" *ngFor="let t of testimonios">
+      <div class="card-testimonio text-center">
+        <img [src]="t.imagen" class="img-cliente">
+        <p class="fst-italic">"{{ t.mensaje }}"</p>
+        <h6 class="fw-bold">{{ t.nombre }}</h6>
+        <small class="text-muted">{{ t.detalle }}</small>
+      </div>
+    </div>
+
+  </div>
+</section>
+

@@ -7,4 +7,6 @@ import { RouterModule } from '@angular/router';
   templateUrl: './navbar.component.html',
   imports: [RouterModule]
 })
-export class NavbarComponent {}
+export class NavbarComponent {
+  
+}

@@ -1,0 +1,28 @@
+<nav class="navbar" style="background-color: #f5f5dc;">
+  <div class="container-fluid">
+
+   
+
+    
+
+
+<!-- SERVICIOS -->
+<section class="container my-5 py-4">
+  <h2 class="text-center mb-5 fw-bold titulo">
+    Nuestros Servicios
+  </h2>
+
+  <div class="row g-4">
+    <div class="col-md-4 fade-in"
+         *ngFor="let s of servicios; let i = index"
+         [style.animationDelay]="(i * 0.2) + 's'">
+
+      <div class="service-card text-center">
+        <i [class]="s.icono + ' service-icon'"></i>
+        <h3 class="service-title">{{ s.titulo }}</h3>
+        <p class="service-desc">{{ s.descripcion }}</p>
+      </div>
+
+    </div>
+  </div>
+</section>
